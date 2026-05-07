@@ -11,7 +11,96 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
 
 <style>
+.hero{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+    background:
+    radial-gradient(circle at top,#00f7ff22,#050816);
+}
 
+.hero h1{
+    font-size:55px;
+    color:#4da3ff;
+    text-shadow:0 0 25px #4da3ff;
+    margin-bottom:20px;
+}
+
+.hero p{
+    max-width:700px;
+    line-height:2;
+    font-size:20px;
+    color:#ddd;
+}
+
+.buttons{
+    display:flex;
+    gap:20px;
+    margin-top:35px;
+    flex-wrap:wrap;
+}
+
+.btn,.btn2{
+    padding:18px 45px;
+    border-radius:15px;
+    text-decoration:none;
+    font-size:20px;
+    font-weight:bold;
+    transition:.4s;
+}
+
+.btn{
+    background:linear-gradient(45deg,#00bfff,#00ff88);
+    color:white;
+}
+
+.btn2{
+    border:2px solid #00ffcc;
+    color:#00ffcc;
+}
+
+.btn:hover,
+.btn2:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 25px #00ccff;
+}
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+    padding:100px 30px;
+}
+
+.card{
+    background:#10182c;
+    border:1px solid #1d2f52;
+    padding:40px;
+    border-radius:25px;
+    transition:.5s;
+    box-shadow:0 0 20px #00000055;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    border-color:#00ccff;
+    box-shadow:0 0 30px #00ccff55;
+}
+
+.card h2{
+    color:#4da3ff;
+    margin-bottom:20px;
+    font-size:32px;
+}
+
+.card p{
+    color:#ccc;
+    line-height:1.9;
+}
 *{
 margin:0;
 padding:0;
@@ -332,6 +421,45 @@ font-size:24px;
 © 2026 KH Ultimate — جميع الحقوق محفوظة
 
 </footer>
+<header class="hero">
+    <h1>KH ULTIMATE</h1>
+    <p>
+        منصة احترافية فائقة السرعة بتصميم مستقبلي مذهل
+        وتجربة مستخدم قوية على جميع الأجهزة.
+    </p>
 
+    <div class="buttons">
+        <a href="#features" class="btn">ابدأ الآن</a>
+
+        <a href="https://wa.me/0000000000" class="btn2">
+            واتساب
+        </a>
+    </div>
+</header>
+
+<section id="features" class="features">
+
+    <div class="card">
+        <h2>⚡ سرعة خارقة</h2>
+        <p>
+            أداء سريع واستجابة قوية مع تصميم حديث.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>🛡 حماية قوية</h2>
+        <p>
+            أمان عالي وحماية متقدمة للموقع.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>🎨 تصميم مستقبلي</h2>
+        <p>
+            واجهة احترافية جذابة بتأثيرات متحركة.
+        </p>
+    </div>
+
+</section>
 </body>
 </html>
