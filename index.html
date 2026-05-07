@@ -2,218 +2,336 @@
 <html lang="ar" dir="rtl">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>KH Project | موقع احترافي</title>
+<title>KH Ultimate | موقع احترافي</title>
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Tahoma,sans-serif;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
 
-    body{
-      background:linear-gradient(135deg,#0d1117,#161b22);
-      color:white;
-      min-height:100vh;
-      overflow-x:hidden;
-    }
+<style>
 
-    header{
-      padding:80px 20px;
-      text-align:center;
-    }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Cairo',sans-serif;
+}
 
-    header h1{
-      font-size:60px;
-      color:#58a6ff;
-      margin-bottom:15px;
-      text-shadow:0 0 20px rgba(88,166,255,.5);
-    }
+body{
+background:#050816;
+color:white;
+overflow-x:hidden;
+}
 
-    header p{
-      color:#c9d1d9;
-      font-size:20px;
-      max-width:700px;
-      margin:auto;
-      line-height:1.8;
-    }
+body::before{
+content:'';
+position:fixed;
+width:500px;
+height:500px;
+background:#2563eb33;
+filter:blur(120px);
+top:-150px;
+right:-100px;
+z-index:-1;
+}
 
-    .btn{
-      display:inline-block;
-      margin-top:30px;
-      padding:15px 35px;
-      background:#238636;
-      color:white;
-      text-decoration:none;
-      border-radius:12px;
-      transition:.3s;
-      font-size:18px;
-      font-weight:bold;
-    }
+body::after{
+content:'';
+position:fixed;
+width:400px;
+height:400px;
+background:#22c55e22;
+filter:blur(120px);
+bottom:-150px;
+left:-100px;
+z-index:-1;
+}
 
-    .btn:hover{
-      background:#2ea043;
-      transform:scale(1.05);
-      box-shadow:0 0 20px rgba(46,160,67,.5);
-    }
+header{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
 
-    .container{
-      width:90%;
-      max-width:1200px;
-      margin:auto;
-      padding-bottom:60px;
-    }
+.hero{
+max-width:850px;
+animation:fade 1.5s ease;
+}
 
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:25px;
-    }
+.hero h1{
+font-size:75px;
+font-weight:900;
+margin-bottom:20px;
+background:linear-gradient(to right,#60a5fa,#22c55e);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+text-shadow:0 0 30px #2563eb55;
+}
 
-    .card{
-      background:rgba(22,27,34,.9);
-      border:1px solid #30363d;
-      padding:30px;
-      border-radius:20px;
-      transition:.3s;
-      backdrop-filter:blur(10px);
-    }
+.hero p{
+font-size:24px;
+line-height:2;
+color:#d1d5db;
+margin-bottom:35px;
+}
 
-    .card:hover{
-      transform:translateY(-10px);
-      border-color:#58a6ff;
-      box-shadow:0 0 25px rgba(88,166,255,.3);
-    }
+.btn{
+display:inline-block;
+padding:18px 40px;
+background:linear-gradient(45deg,#2563eb,#22c55e);
+color:white;
+text-decoration:none;
+border-radius:15px;
+font-size:20px;
+font-weight:bold;
+transition:.4s;
+box-shadow:0 0 25px #2563eb66;
+}
 
-    .card h2{
-      color:#58a6ff;
-      margin-bottom:15px;
-      font-size:28px;
-    }
+.btn:hover{
+transform:translateY(-8px) scale(1.05);
+box-shadow:0 0 40px #22c55e88;
+}
 
-    .card p{
-      color:#c9d1d9;
-      line-height:1.8;
-    }
+.section{
+padding:100px 10%;
+}
 
-    .stats{
-      margin-top:60px;
-      display:flex;
-      justify-content:center;
-      gap:30px;
-      flex-wrap:wrap;
-    }
+.title{
+text-align:center;
+font-size:45px;
+margin-bottom:70px;
+font-weight:900;
+color:#60a5fa;
+}
 
-    .stat{
-      background:#161b22;
-      padding:25px 40px;
-      border-radius:18px;
-      border:1px solid #30363d;
-      text-align:center;
-      min-width:180px;
-    }
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
 
-    .stat h3{
-      color:#58a6ff;
-      font-size:35px;
-      margin-bottom:10px;
-    }
+.card{
+background:#111827;
+padding:40px 30px;
+border-radius:25px;
+border:1px solid #1f2937;
+transition:.4s;
+position:relative;
+overflow:hidden;
+}
 
-    .stat span{
-      color:#c9d1d9;
-    }
+.card::before{
+content:'';
+position:absolute;
+width:100%;
+height:5px;
+background:linear-gradient(to right,#2563eb,#22c55e);
+top:0;
+right:0;
+}
 
-    footer{
-      text-align:center;
-      padding:30px;
-      border-top:1px solid #30363d;
-      color:#8b949e;
-      margin-top:40px;
-    }
+.card:hover{
+transform:translateY(-12px);
+box-shadow:0 0 30px #2563eb33;
+}
 
-    @media(max-width:700px){
-      header h1{
-        font-size:40px;
-      }
+.card h3{
+font-size:30px;
+margin-bottom:20px;
+color:#60a5fa;
+}
 
-      header p{
-        font-size:16px;
-      }
-    }
-  </style>
+.card p{
+line-height:2;
+color:#d1d5db;
+font-size:18px;
+}
+
+.stats{
+display:flex;
+justify-content:center;
+gap:30px;
+flex-wrap:wrap;
+margin-top:70px;
+}
+
+.stat{
+background:#111827;
+padding:35px;
+border-radius:20px;
+min-width:220px;
+text-align:center;
+border:1px solid #1f2937;
+transition:.3s;
+}
+
+.stat:hover{
+transform:scale(1.05);
+}
+
+.stat h2{
+font-size:50px;
+color:#22c55e;
+margin-bottom:10px;
+}
+
+.stat span{
+font-size:18px;
+color:#d1d5db;
+}
+
+.contact{
+text-align:center;
+padding:100px 20px;
+}
+
+.contact h2{
+font-size:45px;
+margin-bottom:25px;
+color:#60a5fa;
+}
+
+.contact p{
+font-size:22px;
+color:#d1d5db;
+margin-bottom:30px;
+}
+
+footer{
+padding:30px;
+text-align:center;
+border-top:1px solid #1f2937;
+color:#9ca3af;
+margin-top:50px;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(40px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@media(max-width:700px){
+
+.hero h1{
+font-size:45px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+.title{
+font-size:35px;
+}
+
+.card h3{
+font-size:24px;
+}
+
+}
+
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>KH PROJECT</h1>
+<header>
 
-    <p>
-      موقع احترافي سريع وآمن بتصميم عصري مستوحى من GitHub
-      مع أداء قوي وتجربة مستخدم ممتازة.
-    </p>
+<div class="hero">
 
-    <a href="#" class="btn">ابدأ الآن</a>
-  </header>
+<h1>KH ULTIMATE</h1>
 
-  <div class="container">
+<p>
+منصة ويب احترافية بتصميم عصري وتأثيرات قوية وسرعة عالية،
+مصممة لتقديم أفضل تجربة ممكنة على جميع الأجهزة.
+</p>
 
-    <div class="grid">
+<a href="#" class="btn">ابدأ التجربة</a>
 
-      <div class="card">
-        <h2>سرعة عالية</h2>
+</div>
 
-        <p>
-          الموقع مصمم ليعمل بسرعة كبيرة على جميع الأجهزة والمتصفحات.
-        </p>
-      </div>
+</header>
 
-      <div class="card">
-        <h2>حماية قوية</h2>
+<section class="section">
 
-        <p>
-          تصميم نظيف وآمن مع أفضل ممارسات تطوير الويب الحديثة.
-        </p>
-      </div>
+<h2 class="title">مميزات المنصة</h2>
 
-      <div class="card">
-        <h2>تصميم احترافي</h2>
+<div class="cards">
 
-        <p>
-          واجهة حديثة وتأثيرات جميلة تمنح المستخدم تجربة رائعة.
-        </p>
-      </div>
+<div class="card">
+<h3>أداء خارق</h3>
+<p>
+تم تحسين الموقع ليعمل بسرعة فائقة مع تجربة سلسة واحترافية.
+</p>
+</div>
 
-    </div>
+<div class="card">
+<h3>حماية قوية</h3>
+<p>
+هيكل برمجي نظيف وحديث يوفر استقرارًا وأمانًا عاليًا.
+</p>
+</div>
 
-    <div class="stats">
+<div class="card">
+<h3>تصميم فاخر</h3>
+<p>
+واجهة مستقبلية جذابة مع تأثيرات حديثة مستوحاة من المواقع العالمية.
+</p>
+</div>
 
-      <div class="stat">
-        <h3>99%</h3>
-        <span>أداء</span>
-      </div>
+</div>
 
-      <div class="stat">
-        <h3>100%</h3>
-        <span>استجابة</span>
-      </div>
+<div class="stats">
 
-      <div class="stat">
-        <h3>24/7</h3>
-        <span>جاهزية</span>
-      </div>
+<div class="stat">
+<h2>99%</h2>
+<span>أداء</span>
+</div>
 
-    </div>
+<div class="stat">
+<h2>100%</h2>
+<span>استجابة</span>
+</div>
 
-  </div>
+<div class="stat">
+<h2>24/7</h2>
+<span>تشغيل دائم</span>
+</div>
 
-  <footer>
-    © 2026 KH PROJECT - جميع الحقوق محفوظة
-  </footer>
+</div>
+
+</section>
+
+<section class="contact">
+
+<h2>جاهز للانطلاق؟</h2>
+
+<p>
+ابدأ ببناء مشروعك الاحترافي الآن باستخدام GitHub Pages.
+</p>
+
+<a href="#" class="btn">ابدأ الآن</a>
+
+</section>
+
+<footer>
+
+© 2026 KH Ultimate — جميع الحقوق محفوظة
+
+</footer>
 
 </body>
 </html>
