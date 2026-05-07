@@ -1,10 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>مشروع KH</title>
+
+  <title>KH Project | موقع احترافي</title>
 
   <style>
     *{
@@ -15,86 +16,133 @@
     }
 
     body{
-      background:#0d1117;
+      background:linear-gradient(135deg,#0d1117,#161b22);
       color:white;
       min-height:100vh;
+      overflow-x:hidden;
     }
 
     header{
-      background:#161b22;
-      padding:20px;
+      padding:80px 20px;
       text-align:center;
-      border-bottom:2px solid #30363d;
     }
 
     header h1{
-      color:#58a6ff;
-      font-size:32px;
-    }
-
-    .container{
-      width:90%;
-      max-width:1000px;
-      margin:40px auto;
-    }
-
-    .card{
-      background:#161b22;
-      border:1px solid #30363d;
-      border-radius:15px;
-      padding:25px;
-      margin-bottom:25px;
-      transition:0.3s;
-    }
-
-    .card:hover{
-      transform:translateY(-5px);
-      border-color:#58a6ff;
-      box-shadow:0 0 20px rgba(88,166,255,0.3);
-    }
-
-    h2{
+      font-size:60px;
       color:#58a6ff;
       margin-bottom:15px;
+      text-shadow:0 0 20px rgba(88,166,255,.5);
     }
 
-    p{
+    header p{
+      color:#c9d1d9;
+      font-size:20px;
+      max-width:700px;
+      margin:auto;
       line-height:1.8;
-      color:#c9d1d9;
-    }
-
-    ul{
-      margin-top:15px;
-      padding-right:20px;
-    }
-
-    ul li{
-      margin:10px 0;
-      color:#c9d1d9;
     }
 
     .btn{
       display:inline-block;
-      margin-top:20px;
-      padding:12px 25px;
+      margin-top:30px;
+      padding:15px 35px;
       background:#238636;
       color:white;
       text-decoration:none;
-      border-radius:10px;
-      transition:0.3s;
+      border-radius:12px;
+      transition:.3s;
+      font-size:18px;
+      font-weight:bold;
     }
 
     .btn:hover{
       background:#2ea043;
       transform:scale(1.05);
+      box-shadow:0 0 20px rgba(46,160,67,.5);
+    }
+
+    .container{
+      width:90%;
+      max-width:1200px;
+      margin:auto;
+      padding-bottom:60px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+    }
+
+    .card{
+      background:rgba(22,27,34,.9);
+      border:1px solid #30363d;
+      padding:30px;
+      border-radius:20px;
+      transition:.3s;
+      backdrop-filter:blur(10px);
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+      border-color:#58a6ff;
+      box-shadow:0 0 25px rgba(88,166,255,.3);
+    }
+
+    .card h2{
+      color:#58a6ff;
+      margin-bottom:15px;
+      font-size:28px;
+    }
+
+    .card p{
+      color:#c9d1d9;
+      line-height:1.8;
+    }
+
+    .stats{
+      margin-top:60px;
+      display:flex;
+      justify-content:center;
+      gap:30px;
+      flex-wrap:wrap;
+    }
+
+    .stat{
+      background:#161b22;
+      padding:25px 40px;
+      border-radius:18px;
+      border:1px solid #30363d;
+      text-align:center;
+      min-width:180px;
+    }
+
+    .stat h3{
+      color:#58a6ff;
+      font-size:35px;
+      margin-bottom:10px;
+    }
+
+    .stat span{
+      color:#c9d1d9;
     }
 
     footer{
       text-align:center;
-      padding:20px;
+      padding:30px;
       border-top:1px solid #30363d;
       color:#8b949e;
       margin-top:40px;
+    }
+
+    @media(max-width:700px){
+      header h1{
+        font-size:40px;
+      }
+
+      header p{
+        font-size:16px;
+      }
     }
   </style>
 </head>
@@ -102,44 +150,69 @@
 <body>
 
   <header>
-    <h1>مشروع KH</h1>
+    <h1>KH PROJECT</h1>
+
+    <p>
+      موقع احترافي سريع وآمن بتصميم عصري مستوحى من GitHub
+      مع أداء قوي وتجربة مستخدم ممتازة.
+    </p>
+
+    <a href="#" class="btn">ابدأ الآن</a>
   </header>
 
   <div class="container">
 
-    <div class="card">
-      <h2>عن المشروع</h2>
-      <p>
-        هذا موقع احترافي تم إنشاؤه باستخدام HTML و CSS فقط
-        مع تصميم عصري مستوحى من GitHub.
-      </p>
+    <div class="grid">
 
-      <a href="#" class="btn">ابدأ الآن</a>
+      <div class="card">
+        <h2>سرعة عالية</h2>
+
+        <p>
+          الموقع مصمم ليعمل بسرعة كبيرة على جميع الأجهزة والمتصفحات.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>حماية قوية</h2>
+
+        <p>
+          تصميم نظيف وآمن مع أفضل ممارسات تطوير الويب الحديثة.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>تصميم احترافي</h2>
+
+        <p>
+          واجهة حديثة وتأثيرات جميلة تمنح المستخدم تجربة رائعة.
+        </p>
+      </div>
+
     </div>
 
-    <div class="card">
-      <h2>مميزات الموقع</h2>
+    <div class="stats">
 
-      <ul>
-        <li>تصميم أنيق وحديث</li>
-        <li>متجاوب مع الهاتف</li>
-        <li>سرعة تحميل عالية</li>
-        <li>سهولة التعديل والتطوير</li>
-      </ul>
-    </div>
+      <div class="stat">
+        <h3>99%</h3>
+        <span>أداء</span>
+      </div>
 
-    <div class="card">
-      <h2>التقنيات المستخدمة</h2>
+      <div class="stat">
+        <h3>100%</h3>
+        <span>استجابة</span>
+      </div>
 
-      <p>
-        HTML5 — CSS3 — Responsive Design
-      </p>
+      <div class="stat">
+        <h3>24/7</h3>
+        <span>جاهزية</span>
+      </div>
+
     </div>
 
   </div>
 
   <footer>
-    جميع الحقوق محفوظة © 2026
+    © 2026 KH PROJECT - جميع الحقوق محفوظة
   </footer>
 
 </body>
