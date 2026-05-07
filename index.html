@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<input id="msg" placeholder="اكتب رسالة">
+<button onclick="sendMessage()">Send</button>
+
+<script>
+function sendMessage() {
+    const text = document.getElementById("msg").value;
+    localStorage.setItem("chat-message", text);
+}
+
+window.addEventListener("storage", (event) => {
+    if (event.key === "chat-message") {
+        alert("رسالة جديدة: " + event.newValue);
+    }
+});
+</script>
+
+</body>
+</html>
