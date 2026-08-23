@@ -461,5 +461,65 @@ font-size:24px;
     </div>
 
 </section>
+    <!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>اختبار Facebook Login</title>
+</head>
+
+<body>
+  <h2>اختبار تسجيل الدخول بـ Facebook</h2>
+
+  <button onclick="loginWithFacebook()">
+    تسجيل الدخول عبر Facebook
+  </button>
+
+  <p id="status">لم يتم تسجيل الدخول بعد.</p>
+
+  <script>
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: 'YOUR_APP_ID',
+        cookie: true,
+        xfbml: true,
+        version: 'v23.0'
+      });
+    };
+
+    (function(d, s, id) {
+      let js, fjs = d.getElementsByTagName(s)[0];
+
+      if (d.getElementById(id)) return;
+
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://connect.facebook.net/ar_AR/sdk.js";
+
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    function loginWithFacebook() {
+      FB.login(function(response) {
+
+        if (response.authResponse) {
+          document.getElementById("status").innerText =
+            "✅ تم تسجيل الدخول بنجاح";
+
+          console.log(response);
+        } else {
+          document.getElementById("status").innerText =
+            "❌ لم يتم تسجيل الدخول";
+        }
+
+      }, {
+        scope: 'public_profile,email'
+      });
+    }
+  </script>
+
+</body>
+</html>
 </body>
 </html>
