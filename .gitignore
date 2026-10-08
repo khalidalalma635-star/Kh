@@ -20,3 +20,5 @@ yarn-error.log*
 *~
 .cache/
 public/uploads/
+prisma/*.db
+prisma/*.db-journal

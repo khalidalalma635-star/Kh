@@ -1,6 +1,5 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { NextRequest } from 'next/server';
 
 export const getSecret = (name: string): string => {
   const value = process.env[name];
@@ -25,9 +24,4 @@ export function signJwt(payload: object) {
 
 export function verifyJwt(token: string) {
   return jwt.verify(token, getSecret('JWT_SECRET')) as { userId: string; email: string };
-}
-
-export function getAuthToken(request: NextRequest) {
-  const authHeader = request.headers.get('authorization') || '';
-  return authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
 }
