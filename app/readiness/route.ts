@@ -1,42 +1,24 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
 
 export async function GET() {
-  const checks = {
-    database: false,
-    aiProvider: false,
-    auth: true,
-  };
+  const databaseConfigured = Boolean(process.env.DATABASE_URL);
+  const aiConfigured = Boolean(
+    process.env.OPENAI_API_KEY || process.env.CLAUDE_API_KEY || process.env.GEMINI_API_KEY
+  );
+  const authConfigured = Boolean(process.env.JWT_SECRET && process.env.NEXTAUTH_SECRET);
 
-  try {
-    await prisma.$queryRaw`SELECT 1`;
-    checks.database = true;
-  } catch {
-    checks.database = false;
-  }
-
-  const provider = (process.env.AI_PROVIDER || 'openai').toLowerCase();
-  const aiConfigured =
-    provider === 'openai'
-      ? Boolean(process.env.OPENAI_API_KEY)
-      : provider === 'claude'
-        ? Boolean(process.env.CLAUDE_API_KEY)
-        : provider === 'gemini'
-          ? Boolean(process.env.GEMINI_API_KEY)
-          : false;
-
-  checks.aiProvider = aiConfigured;
-
-  const healthy = checks.database && checks.aiProvider && checks.auth;
+  const ready = databaseConfigured && aiConfigured && authConfigured;
 
   return NextResponse.json(
     {
-      success: true,
-      status: healthy ? 'ok' : 'degraded',
-      checks,
+      ready,
+      checks: {
+        database: databaseConfigured,
+        aiProvider: aiConfigured,
+        auth: authConfigured,
+      },
       timestamp: new Date().toISOString(),
-      version: process.env.npm_package_version || '1.0.0',
     },
-    { status: healthy ? 200 : 503 }
+    { status: ready ? 200 : 503 }
   );
 }

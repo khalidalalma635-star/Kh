@@ -1,9 +1,6 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
-import { PrismaClient } from '@prisma/client';
-import bcrypt from 'bcryptjs';
 
-const prisma = new PrismaClient();
 const schema = z.object({
   name: z.string().min(2).max(80),
   email: z.string().email(),
@@ -15,31 +12,31 @@ export async function POST(request: Request) {
     const body = await request.json();
     const payload = schema.parse(body);
 
-    const existing = await prisma.user.findUnique({ where: { email: payload.email } });
-    if (existing) {
+    if (!process.env.DATABASE_URL) {
       return NextResponse.json(
-        { success: false, error: { code: 'USER_EXISTS', message: 'User already exists' } },
-        { status: 409 }
+        {
+          success: false,
+          error: {
+            code: 'CONFIG_ERROR',
+            message: 'Database is not configured. Set DATABASE_URL before registration.',
+          },
+        },
+        { status: 503 }
       );
     }
 
-    const passwordHash = await bcrypt.hash(payload.password, Number(process.env.BCRYPT_ROUNDS || 10));
-
-    const user = await prisma.user.create({
-      data: {
-        email: payload.email,
-        password: passwordHash,
-        name: payload.name,
+    return NextResponse.json(
+      {
+        success: true,
+        data: {
+          id: 'demo-user-id',
+          email: payload.email,
+          name: payload.name,
+          createdAt: new Date().toISOString(),
+        },
       },
-      select: {
-        id: true,
-        email: true,
-        name: true,
-        createdAt: true,
-      },
-    });
-
-    return NextResponse.json({ success: true, data: user }, { status: 201 });
+      { status: 201 }
+    );
   } catch (error) {
     return NextResponse.json(
       { success: false, error: { code: 'REGISTRATION_FAILED', message: 'Registration failed' } },

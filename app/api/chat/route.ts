@@ -4,7 +4,6 @@ import { z } from 'zod';
 const schema = z.object({
   message: z.string().min(1).max(12000),
   conversationId: z.string().optional(),
-  userId: z.string().optional(),
 });
 
 export async function POST(request: Request) {
@@ -35,14 +34,12 @@ export async function POST(request: Request) {
       );
     }
 
-    const reply = `AI provider "${provider}" is configured. This secure placeholder response confirms the endpoint is working. Add a real provider integration and valid key to enable production-grade AI responses.`;
-
     return NextResponse.json(
       {
         success: true,
         data: {
           conversationId: payload.conversationId || 'demo-conversation',
-          reply,
+          reply: `AI provider "${provider}" is configured. This is the secure placeholder response for the chat endpoint. Add a real provider call after setting the correct API key.`,
         },
       },
       { status: 200 }
