@@ -1,46 +1,56 @@
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 import { z } from 'zod';
 
-const prisma = new PrismaClient();
-
 const schema = z.object({
-  email: z.string().email(),
-  password: z.string().min(1),
+  message: z.string().min(1).max(12000),
+  conversationId: z.string().optional(),
+  userId: z.string().optional(),
 });
 
 export async function POST(request: Request) {
   try {
-    const json = await request.json();
-    const payload = schema.parse(json);
+    const body = await request.json();
+    const payload = schema.parse(body);
 
-    const user = await prisma.user.findUnique({ where: { email: payload.email } });
-    if (!user) {
-      return NextResponse.json({ success: false, error: { code: 'INVALID_CREDENTIALS', message: 'Invalid credentials' } }, { status: 401 });
+    const provider = (process.env.AI_PROVIDER || 'openai').toLowerCase();
+    const providerKey =
+      provider === 'openai'
+        ? process.env.OPENAI_API_KEY
+        : provider === 'claude'
+          ? process.env.CLAUDE_API_KEY
+          : provider === 'gemini'
+            ? process.env.GEMINI_API_KEY
+            : undefined;
+
+    if (!providerKey) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: 'AI_NOT_CONFIGURED',
+            message: 'AI provider is not configured. Set environment variables before using chat.',
+          },
+        },
+        { status: 503 }
+      );
     }
 
-    const valid = await bcrypt.compare(payload.password, user.password);
-    if (!valid) {
-      return NextResponse.json({ success: false, error: { code: 'INVALID_CREDENTIALS', message: 'Invalid credentials' } }, { status: 401 });
-    }
+    const reply = `AI provider "${provider}" is configured. This secure placeholder response confirms the endpoint is working. Add a real provider integration and valid key to enable production-grade AI responses.`;
 
-    const secret = process.env.JWT_SECRET;
-    if (!secret) {
-      return NextResponse.json({ success: false, error: { code: 'CONFIG_ERROR', message: 'JWT secret is missing' } }, { status: 500 });
-    }
-
-    const token = jwt.sign({ userId: user.id, email: user.email }, secret, { expiresIn: '7d' });
-
-    return NextResponse.json({
-      success: true,
-      data: {
-        token,
-        user: { id: user.id, email: user.email, name: user.name }
+    return NextResponse.json(
+      {
+        success: true,
+        data: {
+          conversationId: payload.conversationId || 'demo-conversation',
+          reply,
+        },
       },
-    }, { status: 200 });
+      { status: 200 }
+    );
   } catch (error) {
-    return NextResponse.json({ success: false, error: { code: 'LOGIN_FAILED', message: 'Unable to sign in' } }, { status: 400 });
+    return NextResponse.json(
+      { success: false, error: { code: 'CHAT_FAILED', message: 'Unable to process chat request' } },
+      { status: 400 }
+    );
   }
 }

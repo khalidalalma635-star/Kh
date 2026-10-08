@@ -1,47 +1,29 @@
-const stats = [
-  { label: 'Conversations', value: '128' },
-  { label: 'Active Projects', value: '14' },
-  { label: 'Files Processed', value: '42' },
-  { label: 'Avg. Response', value: '1.2s' }
-];
-
-export default function DashboardPage() {
+export default function ChatPage() {
   return (
-    <main className="container py-10">
-      <div className="mb-8 flex items-center justify-between">
+    <main className="container py-8">
+      <div className="mb-6 flex items-center justify-between">
         <div>
-          <div className="text-sm uppercase tracking-[0.2em] text-cyan-400">Dashboard</div>
-          <h1 className="mt-2 text-3xl font-black text-white">Welcome back</h1>
+          <div className="text-sm uppercase tracking-[0.2em] text-cyan-400">AI Chat</div>
+          <h1 className="mt-2 text-3xl font-black text-white">Conversation</h1>
         </div>
-        <button className="btn-primary">New Chat</button>
       </div>
 
-      <div className="grid-2 gap-6">
-        {stats.map((stat) => (
-          <div key={stat.label} className="card">
-            <div className="text-sm text-slate-400">{stat.label}</div>
-            <div className="mt-3 text-3xl font-black text-white">{stat.value}</div>
+      <div className="card min-h-[500px] overflow-hidden p-0">
+        <div className="border-b border-slate-800 p-4 text-slate-300">Conversation #124</div>
+        <div className="space-y-5 p-5">
+          <div className="max-w-xl rounded-2xl bg-slate-800 p-4 text-slate-100">
+            Can you help me create a product launch plan for a B2B AI assistant?
           </div>
-        ))}
-      </div>
-
-      <div className="mt-8 grid-2">
-        <div className="card">
-          <div className="text-xl font-bold text-white">Recent Activity</div>
-          <ul className="mt-5 space-y-4 text-slate-300">
-            <li>• AI review completed for marketing strategy doc.</li>
-            <li>• New memory entry stored for project onboarding.</li>
-            <li>• PR summarization generated successfully.</li>
-          </ul>
+          <div className="ml-auto max-w-xl rounded-2xl bg-cyan-600 p-4 text-white">
+            Yes — I can help define the positioning, rollout phases, and customer engagement loop.
+          </div>
         </div>
 
-        <div className="card">
-          <div className="text-xl font-bold text-white">System Health</div>
-          <ul className="mt-5 space-y-4 text-slate-300">
-            <li>• Database: healthy</li>
-            <li>• AI Provider: configured</li>
-            <li>• Auth: active</li>
-          </ul>
+        <div className="border-t border-slate-800 p-4">
+          <div className="flex gap-3">
+            <input className="input" placeholder="Ask KHALIDAI anything..." />
+            <button className="btn-primary">Send</button>
+          </div>
         </div>
       </div>
     </main>

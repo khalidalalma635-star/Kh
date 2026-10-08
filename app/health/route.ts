@@ -1,13 +1,13 @@
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  const now = new Date().toISOString();
-
-  return NextResponse.json({
+  const status = {
     success: true,
     status: 'ok',
-    timestamp: now,
+    timestamp: new Date().toISOString(),
     uptime: process.uptime(),
-    version: process.env.npm_package_version || '1.0.0'
-  });
+    version: process.env.npm_package_version || '1.0.0',
+  };
+
+  return NextResponse.json(status, { status: 200 });
 }

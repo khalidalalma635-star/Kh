@@ -1,11 +1,19 @@
-import { NextResponse } from 'next/server';
+import './globals.css';
+import type { Metadata } from 'next';
 
-export async function GET() {
-  return NextResponse.json({
-    success: true,
-    version: process.env.npm_package_version || '1.0.0',
-    node: process.version,
-    env: process.env.NODE_ENV || 'development',
-    timestamp: new Date().toISOString()
-  });
+export const metadata: Metadata = {
+  title: 'KHALIDAI',
+  description: 'Production-ready AI application foundation',
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  );
 }
