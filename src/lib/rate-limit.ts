@@ -1,28 +1,22 @@
-export type AIProvider = 'openai' | 'claude' | 'gemini';
+const windowMs = Number(process.env.RATE_LIMIT_WINDOW || '900000');
+const maxRequests = Number(process.env.RATE_LIMIT_REQUESTS || '100');
 
-export function getAiProvider(): AIProvider {
-  const provider = (process.env.AI_PROVIDER || 'openai').toLowerCase();
-  if (provider === 'claude' || provider === 'gemini') return provider;
-  return 'openai';
-}
+const hits = new Map<string, { count: number; resetAt: number }>();
 
-export function getConfiguredAiKey(provider: AIProvider) {
-  if (provider === 'openai') return process.env.OPENAI_API_KEY;
-  if (provider === 'claude') return process.env.CLAUDE_API_KEY;
-  return process.env.GEMINI_API_KEY;
-}
+export function enforceRateLimit(identifier: string) {
+  const now = Date.now();
+  const current = hits.get(identifier);
 
-export function validateAiConfiguration() {
-  const provider = getAiProvider();
-  const key = getConfiguredAiKey(provider);
-
-  if (!key) {
-    return {
-      ok: false,
-      provider,
-      error: `Missing ${provider.toUpperCase()} API key. Configure the corresponding environment variable before using the AI features.`,
-    };
+  if (!current || now > current.resetAt) {
+    hits.set(identifier, { count: 1, resetAt: now + windowMs });
+    return true;
   }
 
-  return { ok: true, provider };
+  if (current.count >= maxRequests) {
+    return false;
+  }
+
+  current.count += 1;
+  hits.set(identifier, current);
+  return true;
 }

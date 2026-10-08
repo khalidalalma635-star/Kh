@@ -24,6 +24,7 @@ model User {
   memories      Memory[]
 
   @@index([email])
+  @@index([createdAt])
 }
 
 model Conversation {
@@ -46,23 +47,9 @@ model Message {
   role           String
   content        String       @db.Text
   createdAt      DateTime     @default(now())
-  toolCalls      ToolCall[]
 
   @@index([conversationId])
   @@index([createdAt])
-}
-
-model ToolCall {
-  id        String   @id @default(cuid())
-  messageId String
-  message   Message  @relation(fields: [messageId], references: [id], onDelete: Cascade)
-  toolName  String
-  input     String   @db.Text
-  output    String?  @db.Text
-  status    String   @default("pending")
-  createdAt DateTime @default(now())
-
-  @@index([messageId])
 }
 
 model Project {
@@ -76,6 +63,7 @@ model Project {
   updatedAt   DateTime @updatedAt
 
   @@index([userId])
+  @@index([createdAt])
 }
 
 model File {

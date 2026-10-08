@@ -1,11 +1,28 @@
-export default function NotFound() {
-  return (
-    <main className="flex min-h-screen items-center justify-center">
-      <div className="card text-center">
-        <div className="text-sm uppercase tracking-[0.2em] text-cyan-400">404</div>
-        <h1 className="mt-4 text-4xl font-black text-white">Page not found</h1>
-        <p className="mt-3 text-slate-300">The page you requested does not exist.</p>
-      </div>
-    </main>
-  );
+export type AIProvider = 'openai' | 'claude' | 'gemini';
+
+export function getAiProvider(): AIProvider {
+  const provider = (process.env.AI_PROVIDER || 'openai').toLowerCase();
+  if (provider === 'claude' || provider === 'gemini') return provider;
+  return 'openai';
+}
+
+export function getConfiguredAiKey(provider: AIProvider) {
+  if (provider === 'openai') return process.env.OPENAI_API_KEY;
+  if (provider === 'claude') return process.env.CLAUDE_API_KEY;
+  return process.env.GEMINI_API_KEY;
+}
+
+export function validateAiConfiguration() {
+  const provider = getAiProvider();
+  const key = getConfiguredAiKey(provider);
+
+  if (!key) {
+    return {
+      ok: false,
+      provider,
+      error: `Missing ${provider.toUpperCase()} API key. Configure the corresponding environment variable before using the AI features.`,
+    };
+  }
+
+  return { ok: true, provider };
 }

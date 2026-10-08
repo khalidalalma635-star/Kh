@@ -1,5 +1,10 @@
-export const config = {
-  env: {
-    customKey: 'my-value',
-  }
+const config = {
+  images: {
+    unoptimized: true,
+  },
+  typescript: {
+    tsconfigPath: './tsconfig.json',
+  },
 };
+
+export default config;

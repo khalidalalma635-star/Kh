@@ -1,32 +1,24 @@
 import { z } from 'zod';
 
-export const emailSchema = z.string().email('Invalid email format');
-export const passwordSchema = z.string().min(8, 'Password must be at least 8 characters');
-export const nameSchema = z.string().min(2).max(100);
-
 export const registerSchema = z.object({
-  email: emailSchema,
-  password: passwordSchema,
-  name: nameSchema.optional(),
+  name: z.string().min(2).max(80),
+  email: z.string().email(),
+  password: z.string().min(8).max(128),
 });
 
 export const loginSchema = z.object({
-  email: emailSchema,
+  email: z.string().email(),
   password: z.string().min(1),
 });
 
-export const messageSchema = z.object({
-  content: z.string().min(1).max(10000),
-  conversationId: z.string(),
+export const chatSchema = z.object({
+  message: z.string().min(1).max(12000),
+  conversationId: z.string().optional(),
 });
 
-export function validate<T>(schema: z.ZodSchema, data: any): T {
-  try {
-    return schema.parse(data) as T;
-  } catch (error) {
-    if (error instanceof z.ZodError) {
-      throw new Error(`Validation failed: ${error.errors[0].message}`);
-    }
-    throw error;
-  }
-}
+export const fileUploadSchema = z.object({
+  name: z.string().min(1).max(255),
+  mimeType: z.string().min(1),
+  size: z.number().max(10 * 1024 * 1024),
+  content: z.string().min(1),
+});

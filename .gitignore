@@ -1,11 +1,8 @@
+.next/
 node_modules/
 .env
 .env.local
 .env.*.local
-.next/
-out/
-build/
-dist/
 .DS_Store
 *.log
 npm-debug.log*
@@ -20,5 +17,6 @@ yarn-error.log*
 *~
 .cache/
 public/uploads/
-prisma/*.db
-prisma/*.db-journal
+build/
+dist/
+out/

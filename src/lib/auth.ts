@@ -23,5 +23,8 @@ export function signJwt(payload: object) {
 }
 
 export function verifyJwt(token: string) {
-  return jwt.verify(token, getSecret('JWT_SECRET')) as { userId: string; email: string };
+  return jwt.verify(token, getSecret('JWT_SECRET')) as {
+    userId: string;
+    email: string;
+  };
 }
