@@ -1,0 +1,111 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  password      String
+  name          String?
+  avatar        String?
+  bio           String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  conversations Conversation[]
+  files         File[]
+  projects      Project[]
+  memory        Memory[]
+  
+  @@index([email])
+}
+
+model Conversation {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String   @default("Untitled")
+  messages  Message[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model Message {
+  id              String   @id @default(cuid())
+  conversationId  String
+  conversation    Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  role            String   // "user" or "assistant"
+  content         String   @db.Text
+  toolCalls       ToolCall[]
+  createdAt       DateTime @default(now())
+  
+  @@index([conversationId])
+  @@index([createdAt])
+}
+
+model ToolCall {
+  id        String   @id @default(cuid())
+  messageId String
+  message   Message   @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  toolName  String
+  input     String   @db.Text
+  output    String?  @db.Text
+  status    String   @default("pending") // pending, success, failed
+  createdAt DateTime @default(now())
+  
+  @@index([messageId])
+}
+
+model File {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name      String
+  path      String   @unique
+  mimeType  String
+  size      Int
+  content   String?  @db.Text
+  embedding String?  @db.Text
+  metadata  String?  @db.Text
+  createdAt DateTime @default(now())
+  
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model Project {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name      String
+  description String?
+  data      String   @db.Text @default("{}")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@index([userId])
+}
+
+model Memory {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  key       String
+  value     String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@unique([userId, key])
+  @@index([userId])
+}
