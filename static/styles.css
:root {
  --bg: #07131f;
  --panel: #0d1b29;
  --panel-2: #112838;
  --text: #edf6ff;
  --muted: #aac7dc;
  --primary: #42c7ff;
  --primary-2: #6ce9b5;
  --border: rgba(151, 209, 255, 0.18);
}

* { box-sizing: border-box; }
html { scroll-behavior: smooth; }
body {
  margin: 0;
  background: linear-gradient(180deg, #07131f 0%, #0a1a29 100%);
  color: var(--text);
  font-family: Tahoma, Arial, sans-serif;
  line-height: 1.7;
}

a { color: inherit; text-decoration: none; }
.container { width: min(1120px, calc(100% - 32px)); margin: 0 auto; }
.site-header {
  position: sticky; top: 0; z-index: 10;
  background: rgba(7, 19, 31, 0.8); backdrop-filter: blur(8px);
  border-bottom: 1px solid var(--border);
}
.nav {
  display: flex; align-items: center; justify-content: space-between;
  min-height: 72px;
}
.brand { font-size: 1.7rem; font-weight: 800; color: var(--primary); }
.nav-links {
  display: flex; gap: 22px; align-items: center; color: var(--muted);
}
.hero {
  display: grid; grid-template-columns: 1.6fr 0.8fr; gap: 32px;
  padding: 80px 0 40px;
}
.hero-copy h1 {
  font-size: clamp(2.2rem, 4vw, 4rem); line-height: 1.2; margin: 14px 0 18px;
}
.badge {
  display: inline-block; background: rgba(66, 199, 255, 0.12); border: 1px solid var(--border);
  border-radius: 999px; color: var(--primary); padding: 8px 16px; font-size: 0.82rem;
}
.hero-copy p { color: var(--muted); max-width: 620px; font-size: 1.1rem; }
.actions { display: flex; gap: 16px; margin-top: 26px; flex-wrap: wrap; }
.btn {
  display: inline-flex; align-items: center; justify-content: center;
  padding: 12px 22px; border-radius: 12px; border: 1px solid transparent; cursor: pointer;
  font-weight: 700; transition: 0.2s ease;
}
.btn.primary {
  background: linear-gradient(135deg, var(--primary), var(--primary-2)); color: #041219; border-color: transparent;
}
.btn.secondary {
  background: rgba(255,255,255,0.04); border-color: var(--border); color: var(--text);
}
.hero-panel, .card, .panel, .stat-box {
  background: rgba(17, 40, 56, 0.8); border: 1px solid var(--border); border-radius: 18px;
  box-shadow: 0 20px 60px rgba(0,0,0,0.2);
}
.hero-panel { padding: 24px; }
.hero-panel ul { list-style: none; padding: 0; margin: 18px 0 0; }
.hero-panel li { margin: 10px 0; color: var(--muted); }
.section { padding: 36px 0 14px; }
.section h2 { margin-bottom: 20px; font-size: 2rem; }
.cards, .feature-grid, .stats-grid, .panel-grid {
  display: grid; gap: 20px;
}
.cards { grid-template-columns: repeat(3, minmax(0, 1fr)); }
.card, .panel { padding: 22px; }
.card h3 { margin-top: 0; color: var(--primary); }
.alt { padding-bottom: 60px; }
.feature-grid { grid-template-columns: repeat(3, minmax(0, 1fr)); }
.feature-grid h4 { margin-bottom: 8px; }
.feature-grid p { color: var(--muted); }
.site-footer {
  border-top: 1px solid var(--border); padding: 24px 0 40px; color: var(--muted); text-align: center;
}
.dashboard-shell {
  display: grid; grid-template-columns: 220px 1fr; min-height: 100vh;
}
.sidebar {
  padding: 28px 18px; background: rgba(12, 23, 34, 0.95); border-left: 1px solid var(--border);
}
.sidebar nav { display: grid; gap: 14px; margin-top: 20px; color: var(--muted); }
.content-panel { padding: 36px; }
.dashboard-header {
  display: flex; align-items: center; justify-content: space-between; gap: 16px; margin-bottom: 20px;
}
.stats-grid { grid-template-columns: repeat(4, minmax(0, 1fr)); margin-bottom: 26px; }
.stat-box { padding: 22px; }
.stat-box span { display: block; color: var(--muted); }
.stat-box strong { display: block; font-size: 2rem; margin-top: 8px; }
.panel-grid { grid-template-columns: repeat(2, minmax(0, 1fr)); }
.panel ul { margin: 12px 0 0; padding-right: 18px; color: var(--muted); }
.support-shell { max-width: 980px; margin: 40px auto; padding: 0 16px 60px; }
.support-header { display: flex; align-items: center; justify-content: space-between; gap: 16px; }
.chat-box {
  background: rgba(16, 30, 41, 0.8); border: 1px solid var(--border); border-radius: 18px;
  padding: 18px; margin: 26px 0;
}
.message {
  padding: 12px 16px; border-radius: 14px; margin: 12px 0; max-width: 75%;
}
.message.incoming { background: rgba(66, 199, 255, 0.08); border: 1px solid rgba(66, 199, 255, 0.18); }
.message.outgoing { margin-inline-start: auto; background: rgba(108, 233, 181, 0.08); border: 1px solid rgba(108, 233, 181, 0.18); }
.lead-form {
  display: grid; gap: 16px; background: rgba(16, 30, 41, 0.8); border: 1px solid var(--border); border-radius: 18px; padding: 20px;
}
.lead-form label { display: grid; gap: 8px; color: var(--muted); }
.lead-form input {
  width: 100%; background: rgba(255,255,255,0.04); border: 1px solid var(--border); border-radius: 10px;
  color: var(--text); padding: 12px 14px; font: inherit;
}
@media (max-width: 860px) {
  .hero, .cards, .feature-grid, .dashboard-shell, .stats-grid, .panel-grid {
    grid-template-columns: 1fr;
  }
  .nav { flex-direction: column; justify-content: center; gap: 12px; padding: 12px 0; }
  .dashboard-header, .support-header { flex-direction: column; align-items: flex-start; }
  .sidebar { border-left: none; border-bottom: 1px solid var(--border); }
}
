@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الدعم | KHALIDAI</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="support-shell">
+    <div class="support-header">
+      <h1>دعم العملاء</h1>
+      <a href="/" class="btn secondary">العودة</a>
+    </div>
+
+    <div class="chat-box">
+      <div class="message incoming">مرحبًا، أنا مساعد KHALIDAI. كيف يمكنني مساعدتك اليوم؟</div>
+      <div class="message outgoing">أحتاج عرض سعر لخدمة موقع تجاري.</div>
+      <div class="message incoming">ممتاز، أستطيع مساعدتك في اختيار الخطة المناسبة. أرسل تفاصيل المشروع أو املأ النموذج.</div>
+    </div>
+
+    <form class="lead-form">
+      <label>الاسم الكامل
+        <input type="text" placeholder="مثال: أحمد محمد" />
+      </label>
+      <label>البريد الإلكتروني
+        <input type="email" placeholder="name@example.com" />
+      </label>
+      <label>نوع المشروع
+        <input type="text" placeholder="موقع، متجر، أتمتة..." />
+      </label>
+      <button type="button" class="btn primary">إرسال الطلب</button>
+    </form>
+  </div>
+</body>
+</html>
