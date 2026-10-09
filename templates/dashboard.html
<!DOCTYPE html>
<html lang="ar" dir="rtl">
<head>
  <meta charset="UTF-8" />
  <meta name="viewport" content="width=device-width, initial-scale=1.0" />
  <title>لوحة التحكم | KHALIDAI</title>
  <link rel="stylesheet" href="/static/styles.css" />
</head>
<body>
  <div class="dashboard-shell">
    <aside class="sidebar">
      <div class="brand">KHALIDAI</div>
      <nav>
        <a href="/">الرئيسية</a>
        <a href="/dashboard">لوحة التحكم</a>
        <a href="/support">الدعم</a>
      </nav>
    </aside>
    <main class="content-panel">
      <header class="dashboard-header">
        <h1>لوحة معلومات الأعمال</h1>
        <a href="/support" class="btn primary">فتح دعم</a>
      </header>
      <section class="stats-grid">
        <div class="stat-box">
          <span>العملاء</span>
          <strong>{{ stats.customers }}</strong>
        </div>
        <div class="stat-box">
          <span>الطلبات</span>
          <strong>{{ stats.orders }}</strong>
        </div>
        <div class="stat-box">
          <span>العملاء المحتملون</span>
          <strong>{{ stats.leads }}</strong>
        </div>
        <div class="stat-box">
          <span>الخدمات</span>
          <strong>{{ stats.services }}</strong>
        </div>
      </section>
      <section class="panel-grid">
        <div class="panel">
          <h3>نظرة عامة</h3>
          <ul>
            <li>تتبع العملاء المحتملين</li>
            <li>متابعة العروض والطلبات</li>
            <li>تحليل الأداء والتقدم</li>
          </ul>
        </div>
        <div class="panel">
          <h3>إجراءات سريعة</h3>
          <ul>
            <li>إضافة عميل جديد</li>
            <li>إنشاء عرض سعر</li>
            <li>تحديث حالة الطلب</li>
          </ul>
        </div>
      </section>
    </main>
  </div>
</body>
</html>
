@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KHALIDAI | المنصة</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="container nav">
+      <div class="brand">KHALIDAI</div>
+      <div class="nav-links">
+        <a href="#services">الخدمات</a>
+        <a href="#why-us">لماذا نحن</a>
+        <a href="/dashboard">لوحة التحكم</a>
+        <a href="/support">الدعم</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="hero-copy">
+        <span class="badge">منصة أعمال ذكية</span>
+        <h1>أتمتة أعمالك، إدارة خدماتك، ونجاح زبائنك من منصة واحدة.</h1>
+        <p>
+          KHALIDAI يساعدك على متابعة العملاء، العروض، الطلبات، التذاكر، والمبيعات في واجهة عربية احترافية.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="/dashboard">ابدأ الآن</a>
+          <a class="btn secondary" href="/support">تحدث مع الدعم</a>
+        </div>
+      </div>
+      <div class="hero-panel">
+        <h3>مؤشرات التشغيل</h3>
+        <ul>
+          <li><strong>96%</strong> رضى العملاء</li>
+          <li><strong>24/7</strong> متابعة متاحة</li>
+          <li><strong>12+</strong> خدمة مدارة</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="services" class="container section">
+      <h2>الخدمات الأساسية</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>تطوير المواقع</h3>
+          <p>مواقع احترافية ومتكاملة مع العملاء والمتاجر.</p>
+        </article>
+        <article class="card">
+          <h3>الأتمتة</h3>
+          <p>تسلسل مهام، تذكيرات، متابعة زبائن، وعمليات تشغيلية.</p>
+        </article>
+        <article class="card">
+          <h3>الدعم الذكي</h3>
+          <p>محادثات متكاملة وموجهة بالهوية التجارية والبيانات الموثقة.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="why-us" class="container section alt">
+      <h2>لماذا KHALIDAI؟</h2>
+      <div class="feature-grid">
+        <div>
+          <h4>إدارة موحدة</h4>
+          <p>تتبع العملاء، الخدمات، الطلبات، والمهام من واجهة واحدة.</p>
+        </div>
+        <div>
+          <h4>واجهة عربية RTL</h4>
+          <p>تصميم مناسب للمتصفحات العربية ومناسب للجوال وسطح المكتب.</p>
+        </div>
+        <div>
+          <h4>أمان أولاً</h4>
+          <p>تحقق من المدخلات، سجلات تدقيق، وحماية بيانات العملاء.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© 2026 KHALIDAI. جميع الحقوق محفوظة.</div>
+  </footer>
+</body>
+</html>
