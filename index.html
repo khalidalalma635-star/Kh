@@ -1,525 +1,193 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>KH Ultimate | موقع احترافي</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
-
-<style>
-.hero{
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:20px;
-    background:
-    radial-gradient(circle at top,#00f7ff22,#050816);
-}
-
-.hero h1{
-    font-size:55px;
-    color:#4da3ff;
-    text-shadow:0 0 25px #4da3ff;
-    margin-bottom:20px;
-}
-
-.hero p{
-    max-width:700px;
-    line-height:2;
-    font-size:20px;
-    color:#ddd;
-}
-
-.buttons{
-    display:flex;
-    gap:20px;
-    margin-top:35px;
-    flex-wrap:wrap;
-}
-
-.btn,.btn2{
-    padding:18px 45px;
-    border-radius:15px;
-    text-decoration:none;
-    font-size:20px;
-    font-weight:bold;
-    transition:.4s;
-}
-
-.btn{
-    background:linear-gradient(45deg,#00bfff,#00ff88);
-    color:white;
-}
-
-.btn2{
-    border:2px solid #00ffcc;
-    color:#00ffcc;
-}
-
-.btn:hover,
-.btn2:hover{
-    transform:scale(1.1);
-    box-shadow:0 0 25px #00ccff;
-}
-
-.features{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:30px;
-    padding:100px 30px;
-}
-
-.card{
-    background:#10182c;
-    border:1px solid #1d2f52;
-    padding:40px;
-    border-radius:25px;
-    transition:.5s;
-    box-shadow:0 0 20px #00000055;
-}
-
-.card:hover{
-    transform:translateY(-10px);
-    border-color:#00ccff;
-    box-shadow:0 0 30px #00ccff55;
-}
-
-.card h2{
-    color:#4da3ff;
-    margin-bottom:20px;
-    font-size:32px;
-}
-
-.card p{
-    color:#ccc;
-    line-height:1.9;
-}
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Cairo',sans-serif;
-}
-
-body{
-background:#050816;
-color:white;
-overflow-x:hidden;
-}
-
-body::before{
-content:'';
-position:fixed;
-width:500px;
-height:500px;
-background:#2563eb33;
-filter:blur(120px);
-top:-150px;
-right:-100px;
-z-index:-1;
-}
-
-body::after{
-content:'';
-position:fixed;
-width:400px;
-height:400px;
-background:#22c55e22;
-filter:blur(120px);
-bottom:-150px;
-left:-100px;
-z-index:-1;
-}
-
-header{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:20px;
-}
-
-.hero{
-max-width:850px;
-animation:fade 1.5s ease;
-}
-
-.hero h1{
-font-size:75px;
-font-weight:900;
-margin-bottom:20px;
-background:linear-gradient(to right,#60a5fa,#22c55e);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-text-shadow:0 0 30px #2563eb55;
-}
-
-.hero p{
-font-size:24px;
-line-height:2;
-color:#d1d5db;
-margin-bottom:35px;
-}
-
-.btn{
-display:inline-block;
-padding:18px 40px;
-background:linear-gradient(45deg,#2563eb,#22c55e);
-color:white;
-text-decoration:none;
-border-radius:15px;
-font-size:20px;
-font-weight:bold;
-transition:.4s;
-box-shadow:0 0 25px #2563eb66;
-}
-
-.btn:hover{
-transform:translateY(-8px) scale(1.05);
-box-shadow:0 0 40px #22c55e88;
-}
-
-.section{
-padding:100px 10%;
-}
-
-.title{
-text-align:center;
-font-size:45px;
-margin-bottom:70px;
-font-weight:900;
-color:#60a5fa;
-}
-
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:30px;
-}
-
-.card{
-background:#111827;
-padding:40px 30px;
-border-radius:25px;
-border:1px solid #1f2937;
-transition:.4s;
-position:relative;
-overflow:hidden;
-}
-
-.card::before{
-content:'';
-position:absolute;
-width:100%;
-height:5px;
-background:linear-gradient(to right,#2563eb,#22c55e);
-top:0;
-right:0;
-}
-
-.card:hover{
-transform:translateY(-12px);
-box-shadow:0 0 30px #2563eb33;
-}
-
-.card h3{
-font-size:30px;
-margin-bottom:20px;
-color:#60a5fa;
-}
-
-.card p{
-line-height:2;
-color:#d1d5db;
-font-size:18px;
-}
-
-.stats{
-display:flex;
-justify-content:center;
-gap:30px;
-flex-wrap:wrap;
-margin-top:70px;
-}
-
-.stat{
-background:#111827;
-padding:35px;
-border-radius:20px;
-min-width:220px;
-text-align:center;
-border:1px solid #1f2937;
-transition:.3s;
-}
-
-.stat:hover{
-transform:scale(1.05);
-}
-
-.stat h2{
-font-size:50px;
-color:#22c55e;
-margin-bottom:10px;
-}
-
-.stat span{
-font-size:18px;
-color:#d1d5db;
-}
-
-.contact{
-text-align:center;
-padding:100px 20px;
-}
-
-.contact h2{
-font-size:45px;
-margin-bottom:25px;
-color:#60a5fa;
-}
-
-.contact p{
-font-size:22px;
-color:#d1d5db;
-margin-bottom:30px;
-}
-
-footer{
-padding:30px;
-text-align:center;
-border-top:1px solid #1f2937;
-color:#9ca3af;
-margin-top:50px;
-}
-
-@keyframes fade{
-from{
-opacity:0;
-transform:translateY(40px);
-}
-
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-@media(max-width:700px){
-
-.hero h1{
-font-size:45px;
-}
-
-.hero p{
-font-size:18px;
-}
-
-.title{
-font-size:35px;
-}
-
-.card h3{
-font-size:24px;
-}
-
-}
-
-</style>
-</head>
-
-<body>
-
-<header>
-
-<div class="hero">
-
-<h1>KH ULTIMATE</h1>
-
-<p>
-منصة ويب احترافية بتصميم عصري وتأثيرات قوية وسرعة عالية،
-مصممة لتقديم أفضل تجربة ممكنة على جميع الأجهزة.
-</p>
-
-<a href="#" class="btn">ابدأ التجربة</a>
-
-</div>
-
-</header>
-
-<section class="section">
-
-<h2 class="title">مميزات المنصة</h2>
-
-<div class="cards">
-
-<div class="card">
-<h3>أداء خارق</h3>
-<p>
-تم تحسين الموقع ليعمل بسرعة فائقة مع تجربة سلسة واحترافية.
-</p>
-</div>
-
-<div class="card">
-<h3>حماية قوية</h3>
-<p>
-هيكل برمجي نظيف وحديث يوفر استقرارًا وأمانًا عاليًا.
-</p>
-</div>
-
-<div class="card">
-<h3>تصميم فاخر</h3>
-<p>
-واجهة مستقبلية جذابة مع تأثيرات حديثة مستوحاة من المواقع العالمية.
-</p>
-</div>
-
-</div>
-
-<div class="stats">
-
-<div class="stat">
-<h2>99%</h2>
-<span>أداء</span>
-</div>
-
-<div class="stat">
-<h2>100%</h2>
-<span>استجابة</span>
-</div>
-
-<div class="stat">
-<h2>24/7</h2>
-<span>تشغيل دائم</span>
-</div>
-
-</div>
-
-</section>
-
-<section class="contact">
-
-<h2>جاهز للانطلاق؟</h2>
-
-<p>
-ابدأ ببناء مشروعك الاحترافي الآن باستخدام GitHub Pages.
-</p>
-
-<a href="#" class="btn">ابدأ الآن</a>
-
-</section>
-
-<footer>
-
-© 2026 KH Ultimate — جميع الحقوق محفوظة
-
-</footer>
-<header class="hero">
-    <h1>KH ULTIMATE</h1>
-    <p>
-        منصة احترافية فائقة السرعة بتصميم مستقبلي مذهل
-        وتجربة مستخدم قوية على جميع الأجهزة.
-    </p>
-
-    <div class="buttons">
-        <a href="#features" class="btn">ابدأ الآن</a>
-
-        <a href="https://wa.me/0000000000" class="btn2">
-            واتساب
-        </a>
-    </div>
-</header>
-
-<section id="features" class="features">
-
-    <div class="card">
-        <h2>⚡ سرعة خارقة</h2>
-        <p>
-            أداء سريع واستجابة قوية مع تصميم حديث.
-        </p>
-    </div>
-
-    <div class="card">
-        <h2>🛡 حماية قوية</h2>
-        <p>
-            أمان عالي وحماية متقدمة للموقع.
-        </p>
-    </div>
-
-    <div class="card">
-        <h2>🎨 تصميم مستقبلي</h2>
-        <p>
-            واجهة احترافية جذابة بتأثيرات متحركة.
-        </p>
-    </div>
-
-</section>
-    <!DOCTYPE html>
-<html lang="ar">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>اختبار Facebook Login</title>
+  <title>KH ULTIMATE</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #070b18;
+      color: white;
+      line-height: 1.8;
+    }
+
+    header {
+      min-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px 20px;
+      background: radial-gradient(circle, #15376a, #070b18 70%);
+    }
+
+    h1 {
+      font-size: clamp(38px, 8vw, 70px);
+      color: #55b5ff;
+      margin-bottom: 20px;
+    }
+
+    header p {
+      max-width: 650px;
+      color: #d5deee;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #1687ff;
+      color: white;
+      text-decoration: none;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: .2s;
+    }
+
+    .btn:hover {
+      background: #0868cf;
+      transform: translateY(-2px);
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    h2.title {
+      text-align: center;
+      color: #55b5ff;
+      margin-bottom: 35px;
+      font-size: 32px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      padding: 25px;
+      background: #111a2e;
+      border: 1px solid #253653;
+      border-radius: 15px;
+      transition: .2s;
+    }
+
+    .card:hover {
+      border-color: #1687ff;
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      color: #55b5ff;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: #cbd5e1;
+    }
+
+    .contact {
+      text-align: center;
+      background: #0d1425;
+      padding: 45px 20px;
+      border-radius: 15px;
+    }
+
+    #message {
+      margin-top: 20px;
+      color: #75e6a5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #9ba9bf;
+      border-top: 1px solid #253653;
+    }
+  </style>
 </head>
 
 <body>
-  <h2>اختبار تسجيل الدخول بـ Facebook</h2>
 
-  <button onclick="loginWithFacebook()">
-    تسجيل الدخول عبر Facebook
-  </button>
+  <header>
+    <h1>KH ULTIMATE</h1>
 
-  <p id="status">لم يتم تسجيل الدخول بعد.</p>
+    <p>
+      مرحبًا بك في منصتك الرقمية.
+      تصميم عصري، واجهة أنيقة، وتجربة مناسبة للهاتف والحاسوب.
+    </p>
+
+    <a class="btn" href="#features">اكتشف الموقع</a>
+  </header>
+
+  <main>
+    <section id="features">
+      <h2 class="title">مميزات المنصة</h2>
+
+      <div class="cards">
+        <article class="card">
+          <h3>⚡ سرعة عالية</h3>
+          <p>صفحة خفيفة دون مكتبات إضافية.</p>
+        </article>
+
+        <article class="card">
+          <h3>🛡️ تصميم آمن</h3>
+          <p>واجهة بسيطة دون جمع كلمات المرور أو البيانات الشخصية.</p>
+        </article>
+
+        <article class="card">
+          <h3>📱 متوافق مع الهاتف</h3>
+          <p>يتكيف التصميم تلقائيًا مع أحجام الشاشات المختلفة.</p>
+        </article>
+
+        <article class="card">
+          <h3>🎨 تصميم عصري</h3>
+          <p>ألوان داكنة وتفاصيل مستوحاة من منصات التقنية.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="contact">
+        <h2>جاهز للانطلاق؟</h2>
+        <p>اضغط على الزر لاختبار عمل الموقع.</p>
+
+        <button class="btn" id="startButton" type="button">
+          ابدأ الآن
+        </button>
+
+        <p id="message" role="status"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 KH ULTIMATE
+  </footer>
 
   <script>
-    window.fbAsyncInit = function () {
-      FB.init({
-        appId: 'YOUR_APP_ID',
-        cookie: true,
-        xfbml: true,
-        version: 'v23.0'
-      });
-    };
+    const button = document.getElementById("startButton");
+    const message = document.getElementById("message");
 
-    (function(d, s, id) {
-      let js, fjs = d.getElementsByTagName(s)[0];
-
-      if (d.getElementById(id)) return;
-
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://connect.facebook.net/ar_AR/sdk.js";
-
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
-    function loginWithFacebook() {
-      FB.login(function(response) {
-
-        if (response.authResponse) {
-          document.getElementById("status").innerText =
-            "✅ تم تسجيل الدخول بنجاح";
-
-          console.log(response);
-        } else {
-          document.getElementById("status").innerText =
-            "❌ لم يتم تسجيل الدخول";
-        }
-
-      }, {
-        scope: 'public_profile,email'
-      });
-    }
+    button.addEventListener("click", function () {
+      message.textContent = "✅ الموقع يعمل بنجاح! مرحبًا بك.";
+    });
   </script>
 
-</body>
-</html>
 </body>
 </html>
