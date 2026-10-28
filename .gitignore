@@ -1,0 +1,8 @@
+# KHALIDAI example environment
+APP_NAME="KHALIDAI"
+ENVIRONMENT="development"
+DEBUG="true"
+DATABASE_URL="sqlite:///./khalidai.db"
+SECRET_KEY="change-this-secret-in-production"
+MODEL_PROVIDER="openai"
+MODEL_NAME="gpt-4o-mini"

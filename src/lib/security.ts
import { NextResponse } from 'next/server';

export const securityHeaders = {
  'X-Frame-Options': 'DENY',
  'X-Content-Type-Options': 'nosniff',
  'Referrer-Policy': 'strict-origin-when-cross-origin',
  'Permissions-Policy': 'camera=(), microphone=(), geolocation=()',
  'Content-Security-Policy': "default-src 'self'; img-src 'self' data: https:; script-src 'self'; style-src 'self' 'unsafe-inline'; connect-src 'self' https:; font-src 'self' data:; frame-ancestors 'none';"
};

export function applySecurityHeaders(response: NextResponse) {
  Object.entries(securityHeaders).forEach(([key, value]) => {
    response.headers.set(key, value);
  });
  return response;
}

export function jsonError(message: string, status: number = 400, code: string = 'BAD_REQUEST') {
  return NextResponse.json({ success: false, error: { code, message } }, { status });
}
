@@ -1,0 +1,20 @@
+import { NextResponse } from 'next/server';
+import { getAuthToken, verifyJwt } from '@/lib/auth';
+
+export function withAuth(handler: Function) {
+  return async function wrapped(request: Request, ...args: any[]) {
+    try {
+      const authHeader = request.headers.get('authorization') || '';
+      const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
+
+      if (!token) {
+        return NextResponse.json({ success: false, error: { code: 'AUTH_REQUIRED', message: 'Authentication required' } }, { status: 401 });
+      }
+
+      const payload = verifyJwt(token);
+      return handler(request, payload, ...args);
+    } catch (error) {
+      return NextResponse.json({ success: false, error: { code: 'INVALID_TOKEN', message: 'Invalid or expired session' } }, { status: 401 });
+    }
+  };
+}
